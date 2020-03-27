@@ -1,0 +1,27 @@
+{
+  "name": "react-native-phone-code-select",
+  "version": "1.0.0",
+  "description": "Country phone codes selector for React Native.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/egecavusoglu/RNPhoneCodeSelect.git"
+  },
+  "keywords": [
+    "react",
+    "native",
+    "country",
+    "phone",
+    "code",
+    "select"
+  ],
+  "author": "egecavusoglu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/egecavusoglu/RNPhoneCodeSelect/issues"
+  },
+  "homepage": "https://github.com/egecavusoglu/RNPhoneCodeSelect#readme"
+}
