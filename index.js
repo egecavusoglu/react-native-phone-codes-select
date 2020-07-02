@@ -6,13 +6,14 @@ import {
   StyleSheet,
   ScrollView,
   ActivityIndicator,
-  SafeAreaView
+  SafeAreaView,
+  FlatList,
 } from "react-native";
 import CountryPhoneCodes from "./CountryPhoneCodes";
 import CountryListItem from "./CountryListItem";
 import DoneButton from "./DoneButton";
 
-const RNPhoneCodeModal = props => {
+const RNPhoneCodeModal = (props) => {
   const [input, setInput] = useState(null);
   const [countryList, setCountryList] = useState(CountryPhoneCodes);
   const [loading, setLoading] = useState(false);
@@ -29,7 +30,7 @@ const RNPhoneCodeModal = props => {
     setLoading(false);
   };
 
-  const filterArray = country => {
+  const filterArray = (country) => {
     const upperInput = input.toUpperCase();
     if (
       country.name.toUpperCase().startsWith(upperInput) ||
@@ -51,7 +52,7 @@ const RNPhoneCodeModal = props => {
             <TextInput
               numberOfLines={1}
               returnKeyType="done"
-              onChangeText={text => {
+              onChangeText={(text) => {
                 setLoading(true);
                 setInput(text);
               }}
@@ -60,7 +61,7 @@ const RNPhoneCodeModal = props => {
               placeholderTextColor="#93a3ab"
               style={{
                 ...styles.input,
-                ...{ borderColor: props.secondaryColor }
+                ...{ borderColor: props.secondaryColor },
               }}
             />
             {loading ? (
@@ -68,8 +69,13 @@ const RNPhoneCodeModal = props => {
                 <ActivityIndicator size="large" color={props.secondaryColor} />
               </View>
             ) : (
-              <ScrollView style={styles.scroll}>
-                {countryList.map(item => {
+              <FlatList
+                keyboardShouldPersistTaps="always"
+                style={styles.flatList}
+                keyExtractor={(item) => item.code}
+                data={countryList}
+                renderItem={(item) => {
+                  item = item.item;
                   return (
                     <CountryListItem
                       onPress={() => {
@@ -82,10 +88,12 @@ const RNPhoneCodeModal = props => {
                       code={item.dial_code}
                     />
                   );
-                })}
-              </ScrollView>
+                }}
+              />
             )}
+
             <DoneButton
+              buttonText={props.buttonText}
               buttonStyle={props.buttonStyle}
               buttonTextStyle={props.buttonTextStyle}
               color={props.primaryColor}
@@ -102,13 +110,13 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(0,0,0,0.7)",
     flex: 1,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
   },
   container: {
     backgroundColor: "white",
     height: "100%",
     width: "100%",
-    alignItems: "center"
+    alignItems: "center",
   },
   input: {
     color: "#93a3ab",
@@ -118,18 +126,18 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     paddingLeft: 5,
     width: "80%",
-    borderBottomWidth: 3
+    borderBottomWidth: 3,
   },
-  scroll: {
+  flatList: {
     flex: 1,
     width: "90%",
-    marginVertical: 10
+    marginVertical: 10,
   },
   activityView: {
     flex: 1,
     width: "90%",
     marginVertical: 10,
-    justifyContent: "center"
-  }
+    justifyContent: "center",
+  },
 });
 export default RNPhoneCodeModal;
