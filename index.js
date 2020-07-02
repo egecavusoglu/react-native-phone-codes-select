@@ -4,7 +4,6 @@ import {
   Modal,
   TextInput,
   StyleSheet,
-  ScrollView,
   ActivityIndicator,
   SafeAreaView,
   FlatList,
