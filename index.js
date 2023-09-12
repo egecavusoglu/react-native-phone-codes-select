@@ -34,7 +34,8 @@ const RNPhoneCodeModal = (props) => {
     if (
       country.name.toUpperCase().startsWith(upperInput) ||
       country.code.toUpperCase().startsWith(upperInput) ||
-      country.dial_code.startsWith("+" + input)
+      country.dial_code.startsWith("+" + input) ||
+      country.dial_code.startsWith(input)
     ) {
       return true;
     }
@@ -49,6 +50,7 @@ const RNPhoneCodeModal = (props) => {
         <View style={styles.background}>
           <View style={styles.container}>
             <TextInput
+              autoFocus={props.autoFocus}
               numberOfLines={1}
               returnKeyType="done"
               onChangeText={(text) => {
