@@ -49,6 +49,7 @@ const RNPhoneCodeModal = (props) => {
         <View style={styles.background}>
           <View style={styles.container}>
             <TextInput
+              autoFocus={props.autoFocus}
               numberOfLines={1}
               returnKeyType="done"
               onChangeText={(text) => {
