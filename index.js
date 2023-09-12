@@ -34,7 +34,8 @@ const RNPhoneCodeModal = (props) => {
     if (
       country.name.toUpperCase().startsWith(upperInput) ||
       country.code.toUpperCase().startsWith(upperInput) ||
-      country.dial_code.startsWith("+" + input)
+      country.dial_code.startsWith("+" + input) ||
+      country.dial_code.startsWith(input)
     ) {
       return true;
     }
